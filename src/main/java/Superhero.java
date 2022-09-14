@@ -4,21 +4,22 @@ public class Superhero {
     private String power;
     private String Strength;
     private int creationYear;
+    private boolean human;
 
 
-    public Superhero(String name, String power, String strength, int creationYear) {
+    public Superhero(String name, String power, String strength, int creationYear, boolean human) {
+        this.human = human;
         this.name = name;
         this.power = power;
         this.Strength = strength;
         this.creationYear = creationYear;
     }
-    public String toString(){
+    /*public String toString(){
         String Superhero = this.name + "" + this.power + "" + this.Strength + "" + this.creationYear;
         System.out.println(Superhero);
         return Superhero;
 
-
-    }
+     */
 
     public String getName(){
         return name;
@@ -31,5 +32,8 @@ public class Superhero {
     }
     public int getCreationYear(){
         return creationYear;
+    }
+    public boolean isHuman(){
+        return human;
     }
 }
