@@ -14,12 +14,6 @@ public class Superhero {
         this.Strength = strength;
         this.creationYear = creationYear;
     }
-    /*public String toString(){
-        String Superhero = this.name + "" + this.power + "" + this.Strength + "" + this.creationYear;
-        System.out.println(Superhero);
-        return Superhero;
-
-     */
 
     public String getName(){
         return name;
