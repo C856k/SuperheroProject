@@ -14,7 +14,6 @@ public class Superhero {
         this.Strength = strength;
         this.creationYear = creationYear;
     }
-
     public String getName(){
         return name;
     }

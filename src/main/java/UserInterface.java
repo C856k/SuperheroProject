@@ -82,6 +82,5 @@ public class UserInterface {
                 System.out.println(superhero);
             }
         }
-
 }
 
