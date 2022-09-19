@@ -9,14 +9,15 @@ public class Database {
         Superhero hero = new Superhero(name, power, strength, creationYear, human);
         superheroes.add(hero);
     }
-    public Superhero searchFor(String searchTerm) {
+    public ArrayList<Superhero> heroSearch(String searchTerm) {
+        ArrayList<Superhero> heroSearch = new ArrayList<>();
         for (Superhero hero : superheroes) {
             if (hero.getName().equals(searchTerm)) {
-
-                return hero;
+                heroSearch.add(hero);
             }
         }
-        return null;
+
+        return heroSearch;
     }
 
     public ArrayList<Superhero> getAllSuperheroes() {
