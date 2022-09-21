@@ -1,14 +1,16 @@
 public class Superhero {
 
     private String name;
+    private String realName;
     private String power;
     private String Strength;
     private int creationYear;
     private boolean human;
 
 
-    public Superhero(String name, String power, String strength, int creationYear, boolean human) {
+    public Superhero(String name,String realName ,String power, String strength, int creationYear, boolean human) {
         this.human = human;
+        this.realName = realName;
         this.name = name;
         this.power = power;
         this.Strength = strength;
@@ -16,6 +18,9 @@ public class Superhero {
     }
     public String getName(){
         return name;
+    }
+    public String getRealName(){
+        return realName;
     }
     public String getPower(){
         return power;

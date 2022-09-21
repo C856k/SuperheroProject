@@ -33,11 +33,15 @@ public class UserInterface {
     }
 
     public void addHero() {
-        System.out.println("What is the name of the Superhero?: ");
-        String name = scan.next();
-        scan.nextLine();
-        System.out.println("Superhero name: " + name);
         try {
+            System.out.println("What is the name of the Superhero?: ");
+            String name = scan.next();
+            scan.nextLine();
+            System.out.println("Superhero name: " + name);
+            System.out.println("What is the hero's real name?: ");
+            String realName = scan.next();
+            scan.nextLine();
+            System.out.println("Hero's real name: " + realName);
             System.out.println("What is the hero's power?: ");
             String power = scan.nextLine();
             scan.nextLine();
@@ -55,7 +59,7 @@ public class UserInterface {
             System.out.println("Is the Superhero a human?");
             boolean human = scan.nextBoolean();
 
-            database.createSuperhero(name, power, Strength, creationYear, human);
+            database.createSuperhero(name, realName, power, Strength, creationYear, human);
             System.out.println(" Superhero name:\n " + name + " Superhero power:\n " + power + " Superhero strength:\n " + Strength + " The year that the Superhero was created:\n " + creationYear
                     + " Is the hero a human?:\n " + human);
             System.out.println("The hero has now been added to the database!");
@@ -82,6 +86,19 @@ public class UserInterface {
     }
 
     public void editHero() {
+        System.out.println("Type the name of the hero you want to edit:");
+        scan.next();
+        scan.nextLine();
+        ArrayList<Superhero> searchResult = new ArrayList<Superhero>();
+        for (Superhero hero : database.getAllSuperheroes()) {
+            if (hero.getName().contains(hero.getName())) {
+                searchResult.add(hero);
+                System.out.println(hero);
+            }
+        }
+        if (!searchResult.isEmpty())
+            for (Superhero hero : searchResult)
+                System.out.println(hero);
     }
 
     public void heroSearch() {
@@ -95,19 +112,9 @@ public class UserInterface {
         } else {
             System.out.println("Superhero found");
             for (Superhero superhero : searchResult) {
-                System.out.println("Hero name: " + superhero.getName() + "\n" + "Hero power: " + superhero.getPower() + "\n" + "Hero strength: " + superhero.getStrength() + "\n" + "In what year was the hero created?: " + superhero.getCreationYear() + "\n" + "" + superhero.isHuman());
-            }
-            for (int i = 0; i < searchResult.size(); i++) {
-                System.out.println(i + 1 + ":" + searchResult.get(i));
+                System.out.println("Hero name: " + superhero.getName() + "\n" + "Hero's real name: " + superhero.getRealName() + "\n" + "Hero power: " + superhero.getPower() + "\n" + "Hero strength: " + superhero.getStrength() + "\n" + "In what year was the hero created?: " + superhero.getCreationYear() + "\n" + "" + superhero.isHuman());
             }
         }
-        for (int i = 0; i < searchResult.size(); i++) {
-            System.out.println(i + 1 + ":" + searchResult.get(i));
-        }
-        System.out.println("Type the name of the hero you want to edit:");
-        String name = scan.next();
-        scan.nextLine();
-
 
     }
 }
