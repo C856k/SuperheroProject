@@ -65,17 +65,17 @@ class DatabaseTest {
     void deleteSuperhero(){
 
         ArrayList<Superhero> results = database.getAllSuperheroes();
+
         Superhero superhero = results.get(0);
+        int expectedSize = results.size() -1;
         boolean acualtResult = database.deleteSuperhero(superhero);
 
         boolean expectedResult = true;
         assertEquals(acualtResult, expectedResult);
 
-        int expectedSize = results.size() -1;
+
         ArrayList<Superhero> resultsAfterDelete = database.getAllSuperheroes();
         int actualSize = resultsAfterDelete.size();
-
-
         assertEquals(expectedSize,actualSize);
     }
 }

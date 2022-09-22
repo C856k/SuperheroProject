@@ -1,5 +1,5 @@
 public class Superhero {
-
+    
     private String name;
     private String realName;
     private String power;
@@ -33,5 +33,17 @@ public class Superhero {
     }
     public boolean isHuman(){
         return human;
+    }
+
+    public void setRealName() {
+    }
+
+    public void setName() {
+    }
+
+    public void setSuperPower() {
+    }
+
+    public void setCreationYear(int i) {
     }
 }

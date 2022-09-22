@@ -30,7 +30,9 @@ public class Database {
     }
 
     public boolean deleteSuperhero(Superhero superhero) {
-        boolean success = true;
+
+        boolean success;
+                success = superheroes.remove(superhero);
         return success;
     }
 }

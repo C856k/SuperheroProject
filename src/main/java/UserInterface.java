@@ -24,6 +24,8 @@ public class UserInterface {
                 heroSearch();
             } else if (menu == 4) {
                 editHero();
+            } else if (menu == 5) {
+                deleteSuperhero();
             } else if (menu == 9) {
                 System.exit(0);
             }
@@ -87,18 +89,63 @@ public class UserInterface {
 
     public void editHero() {
         System.out.println("Type the name of the hero you want to edit:");
-        scan.next();
+        String searchTerm = scan.next();
         scan.nextLine();
-        ArrayList<Superhero> searchResult = new ArrayList<Superhero>();
+        ArrayList<Superhero> searchResult = new ArrayList<>();
         for (Superhero hero : database.getAllSuperheroes()) {
             if (hero.getName().contains(hero.getName())) {
                 searchResult.add(hero);
                 System.out.println(hero);
             }
         }
-        if (!searchResult.isEmpty())
-            for (Superhero hero : searchResult)
-                System.out.println(hero);
+        if (!searchResult.isEmpty()) {
+            System.out.println("No hero found");
+        } else {
+            System.out.println("Hero found");
+            for (int i = 0; i < searchResult.size(); i++) {
+                System.out.println(((i) + 1) + ")" + searchResult.get((i)));
+            }
+            System.out.println("Choose a hero");
+            int number = scan.nextInt();
+            scan.nextLine();
+            Superhero hero = searchResult.get(number - 1);
+
+            System.out.println("Type the new superhero or press enter to keep the current info");
+            String Name = scan.nextLine();
+
+            if (!Name.isEmpty()) {
+                hero.setName();
+            }
+            System.out.println("Type a new name or press enter");
+            String realName = scan.nextLine();
+
+            if (!realName.isEmpty()) {
+                hero.setRealName();
+            }
+            System.out.println("Type the new superpower or press enter");
+            String superPower = scan.nextLine();
+
+            if (!superPower.isEmpty()) {
+                hero.setSuperPower();
+            }
+            System.out.println("Type the creation year of your superhero");
+            boolean writtingError = false;
+            do {
+                try {
+                    String newCreationYear = scan.nextLine();
+                    if (!newCreationYear.isEmpty()) {
+                        hero.setCreationYear(Integer.parseInt(newCreationYear));
+                        writtingError = false;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("An error happened, please try again");
+                    scan.nextLine();
+                    writtingError = true;
+                }
+
+                System.out.println("The new edited hero: " + hero);
+            } while (writtingError == true);
+        }
     }
 
     public void heroSearch() {
@@ -117,6 +164,36 @@ public class UserInterface {
         }
 
     }
+
+    public void deleteSuperhero() {
+        System.out.println("Type the name of the hero you want to delete");
+        String searchTerm = scan.next();
+        ArrayList<Superhero> searchResult = database.heroSearch(searchTerm);
+        if (!searchResult.isEmpty()) {
+            System.out.println("No results found");
+        } else {
+            System.out.println("Superhero found");
+            for (int i = 0; i < searchResult.size(); i++) {
+                System.out.println((i) + 1 + ")" + searchResult.get(i));
+            }
+            System.out.println("Choose a hero");
+            int number = scan.nextInt();
+            scan.nextLine();
+            Superhero hero = searchResult.get(number - 1);
+
+            System.out.println("Do you want to erase this superhero? (True/False: " + hero);
+            boolean delete = scan.nextBoolean();
+            if (delete == true) {
+                database.deleteSuperhero(hero);
+                System.out.println("Erasing the superhero...");
+            } else if (delete == false) {
+                System.out.println("Doesnt erase the superhero" + hero);
+            }
+
+        }
+
+    }
+
 }
 
 
